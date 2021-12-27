@@ -12,6 +12,16 @@ endif()
 
 configure_file("src/ApplicationInfoDefines.h.in" "${PROJECT_SOURCE_DIR}/src/ApplicationInfoDefines.h.out" @ONLY)
 
-file(GLOB SRC_FILES CONFIGURE_DEPENDS "src/*.h" "src/*.cpp")
+set(SRC_FILES
+        "src/main.cpp"
+        "src/ApplicationInfo.cpp"
+        "src/ApplicationSettings.cpp"
+        "src/Butler.cpp"
+        "src/Networks/NetworkBase.cpp"
+        "src/Networks/TcpNetwork.cpp")
 
 add_executable(CrystalServer ${SRC_FILES})
+
+if(WIN32)
+    target_link_libraries(CrystalServer wsock32 ws2_32)
+endif()
