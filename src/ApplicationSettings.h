@@ -10,11 +10,14 @@
 #include <unordered_map>
 #include <fstream>
 
+// TODO Make application settings more flexible and smart. Change format on json
 class ApplicationSettings {
 public:
     bool ContainsKey(std::string key);
-    bool GetValue(std::string key, std::string& value);
-    static bool ParseSettings(std::istream& stream, ApplicationSettings& settings);
+
+    bool GetValue(std::string key, std::string &value);
+
+    static bool ParseSettings(std::istream &stream, ApplicationSettings &settings);
 
 private:
     std::unordered_map<std::string, std::string> rawSettings;

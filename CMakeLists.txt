@@ -17,11 +17,14 @@ set(SRC_FILES
         "src/ApplicationInfo.cpp"
         "src/ApplicationSettings.cpp"
         "src/Butler.cpp"
+        "src/ConductorConnections.cpp"
         "src/Networks/NetworkBase.cpp"
-        "src/Networks/TcpNetwork.cpp")
+        "src/Networks/TcpNetwork.cpp"
+        "src/Networks/NetworkConnectionBase.cpp"
+        "src/Networks/TcpNetworkConnection.cpp")
 
-add_executable(CrystalServer ${SRC_FILES})
+add_executable(CrystalDuckServer ${SRC_FILES})
 
 if(WIN32)
-    target_link_libraries(CrystalServer wsock32 ws2_32)
+    target_link_libraries(CrystalDuckServer wsock32 ws2_32)
 endif()

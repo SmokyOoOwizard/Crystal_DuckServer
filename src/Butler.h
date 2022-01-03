@@ -10,6 +10,7 @@
 #include <vector>
 #include <thread>
 #include "ApplicationSettings.h"
+#include "ConductorConnections.h"
 #include "Networks/NetworkBase.h"
 
 class Butler {
@@ -23,7 +24,7 @@ public:
     ~Butler();
 
 private:
-    bool working = false;
+    std::atomic<bool> working = false;
 
     std::thread handlerThread;
 
@@ -31,7 +32,10 @@ private:
 
     std::vector<std::unique_ptr<NetworkBase>> networks;
 
-    void threadJobFunction();
+    ConductorConnections conductor;
+
+    void threadNetworkAcceptClientsJobFunction();
+
     void createNetworks();
 };
 

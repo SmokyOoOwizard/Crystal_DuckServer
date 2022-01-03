@@ -20,12 +20,14 @@ public:
 
 
     void PrintInfo(std::ostream &output) const;
+
     std::string MakeVersion() const;
+
     std::string MakeDate() const;
 
 };
 
-inline const std::string ToString (ApplicationInfo::ApplicationCondition v) {
+inline const std::string ToString(ApplicationInfo::ApplicationCondition v) {
     switch (v) {
         case ApplicationInfo::ApplicationCondition::Dev:
             return "Dev";

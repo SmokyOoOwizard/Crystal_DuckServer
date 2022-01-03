@@ -13,23 +13,24 @@
 #include <WinSock2.h>
 
 #else
+
 #include <sys/socket.h>
+
 #endif
 
 class TcpNetwork : public NetworkBase {
 public:
-    TcpNetwork(std::string host, int port);
+    TcpNetwork(std::string host, uint32_t port, uint32_t maxIncomingConnectionsQueue);
 
     ~TcpNetwork() override;
 
-    void ProcessingData() override;
+    int AcceptIncomingConnections(std::vector<std::shared_ptr<NetworkConnectionBase>> &Connections,
+                                  uint32_t maxAcceptedConnections) override;
 
 private:
+    socket_t socket_ptr;
 #ifdef _WIN32
-    SOCKET socket_ptr = -1;
     WSAData w_data;
-#else
-    uint32_t socket_ptr;
 #endif
 };
 
